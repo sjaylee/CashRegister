@@ -12,7 +12,7 @@ namespace TW.CashRegister.Models
     public class Order
     {
         
-        public SortedDictionary<Product,int> Products { get; set; }
+        public Dictionary<Product,int> Products { get; set; }
 
    
 

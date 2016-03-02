@@ -11,6 +11,21 @@ namespace TW.CashRegister.Models
     /// </summary>
     public class Product
     {
+        public override bool Equals(object obj)
+        {
+
+            Product other = obj as Product;
+            if (other != null)
+                return other.Name.Equals(Name);
+
+            return false;
+
+        }
+
+        public override int GetHashCode()
+        {
+            return Name.GetHashCode();
+        }
         /// <summary>
         /// 名称
         /// </summary>

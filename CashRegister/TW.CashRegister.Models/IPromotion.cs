@@ -15,12 +15,12 @@ namespace TW.CashRegister.Models
         /// <summary>
         /// 活动ID
         /// </summary>
-        string ID{ get;  }
+        string ID { get; set; }
 
         /// <summary>
         /// 活动名称
         /// </summary>
-        string Name { get;  }
+        string Name { get; set; }
 
         /// <summary>
         /// 活动优先级
@@ -30,10 +30,11 @@ namespace TW.CashRegister.Models
         /// <summary>
         /// 多活动并存时，该活动是否会成为唯一活动
         /// </summary>
-        bool Unique { get;  } 
+        bool Unique { get; set; }
 
-        bool ShowPromationDesc { get; }
+        bool ShowPromationDesc { get; set; }
 
+        string Type { get; set; }
         //string ProductItemFormat { get; }
 
         //string PromationDescHeadFormat { get; }
@@ -60,5 +61,7 @@ namespace TW.CashRegister.Models
         decimal GetProdcutSum(Product product, int Quantity);
 
         decimal GetProdcutSave(Product product, int Quantity);
+
+       
     }
 }

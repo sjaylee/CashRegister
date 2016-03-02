@@ -22,83 +22,22 @@ namespace TW.CashRegister.Models
         public int FreeNum { get; set; }
 
         public string ID
-        {
-            get
-            {
-                return string.Format("{0}_Free_{1}", BaseNum, FreeNum);
-            }
-
-            
-        }
+        { get; set; }
 
         public string Name
-        {
-            get
-            {
-                return string.Format("买{0}赠{1}", BaseNum, FreeNum);
-            }
-
-            
-        }
+        { get; set; }
 
         public int Priority
-        {
-            get
-            {
-                throw new NotImplementedException();
-            }
-
-            set
-            {
-                throw new NotImplementedException();
-            }
-        }
+        { get; set; }
 
         public bool Unique
-        {
-            get
-            {
-                return true;
-            }
-
-            
-        }
-
-        
-
-        //public string ProductItemFormat
-        //{
-        //    get
-        //    {
-        //        return Const.ProductItemNormal;
-        //    }
-
-            
-        //}
+        { get; set; }
 
         public bool ShowPromationDesc
-        {
-            get
-            {
-               return true;
-            }
-        }
+        { get; set; }
 
-        //public string PromationDescHeadFormat
-        //{
-        //    get
-        //    {
-        //        return Const.PromationDescHeadFormat;
-        //    }
-        //}
-
-        //public string PromationDescItemFormat
-        //{
-        //    get
-        //    {
-        //        return Const.PromationDescItemFormat;
-        //    }
-        //}
+        public string Type
+        { get; set; }
 
         public string GetProductItemText(Product product, int Quantity)
         {

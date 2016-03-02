@@ -12,99 +12,32 @@ namespace TW.CashRegister.Models
     public class PromotionDiscount:IPromotion
     {
  
+        public string Type { get; set; }
 
         public decimal Discount { get; set; }
 
         public string ID
-        {
-            get
-            {
-                return "PROMTION001";
-            }
-            
-
-            
-        }
+        { get; set; }
 
         public string Name
-        {
-            get
-            {
-                return string.Format("{0}折扣", Discount * 100);
-            }
-
-            
-        }
+        { get; set; }
 
         public int Priority
-        {
-            get
-            {
-                throw new NotImplementedException();
-            }
-
-            set
-            {
-                throw new NotImplementedException();
-            }
-        }
+        { get; set; }
 
         public string ProductItemFormat
-        {
-            get
-            {
-                return Const.ProductItemDiscount;
-            }
-        }
+        { get; set; }
 
         public bool ShowPromationDesc
-        {
-            get
-            {
-                return false;
-            }
-        }
+        { get; set; }
 
         public string PromationDescFromat
-        {
-            get
-            {
-                return string.Empty;
-            }
-        }
+        { get; set; }
 
         public bool Unique
-        {
-            get
-            {
-                return false;
-            }
-           
-        }
+        { get; set; }
 
-        public Product Product
-        {
-            get
-            {
-                throw new NotImplementedException();
-            }
-        }
-
-        public string PromationDescHeadFormat
-        {
-            get
-            {
-                throw new NotImplementedException();
-            }
-        }
-
-        public string PromationDescItemFormat
-        {
-            get
-            {
-                return string.Empty;
-            }
-        }
+       
 
         public string GetProductItemText(Product product, int Quantity)
         {
