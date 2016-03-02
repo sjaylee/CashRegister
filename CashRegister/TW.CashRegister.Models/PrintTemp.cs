@@ -13,18 +13,15 @@ namespace TW.CashRegister.Models
         public static readonly string ProductItemNormal= "名称：{0}，数量：{1}{2}，单价：{3}(元)，小计：{4}(元)";
         public static readonly string ProductItemDiscount = "名称：{0}，数量：{1}{2}，单价：{3}(元)，小计：{4}(元)，节省{5}(元)";
 
-        public static readonly string PromationDescFromat = @"----------------------
-买{0}赠{1}商品：
-名称：{2}，数量：{3}{4}
-名称：{5}，数量：{6}{7}";
+        public static readonly string PromationDescHeadFormat = @"买{0}赠{1}商品：";
+        public static readonly string PromationDescItemFormat = @"名称：{0}，数量：{1}{2}";
 
-        public static readonly string SummationNormal = @"----------------------
-总计：{0}(元)
-**********************";
-        public static readonly string SummationPromotion = @"----------------------
-总计：{0}(元)
-节省：{1}(元)
-**********************";
+
+        public static readonly string TotalSumFormat = @"总计：{0}(元)";
+        public static readonly string TotalSaveFormat = @"节省：{1}(元)";
+
+        public static readonly string SplitLine = @"----------------------";
+        public static readonly string LastLine = @"**********************";
     }
 
 

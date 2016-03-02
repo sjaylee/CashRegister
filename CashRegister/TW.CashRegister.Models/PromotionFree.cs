@@ -66,15 +66,15 @@ namespace TW.CashRegister.Models
 
         
 
-        public string ProductItemFormat
-        {
-            get
-            {
-                return Const.ProductItemNormal;
-            }
+        //public string ProductItemFormat
+        //{
+        //    get
+        //    {
+        //        return Const.ProductItemNormal;
+        //    }
 
             
-        }
+        //}
 
         public bool ShowPromationDesc
         {
@@ -84,44 +84,57 @@ namespace TW.CashRegister.Models
             }
         }
 
-        public string PromationDescFromat
-        {
-            get
-            {
-                return Const.PromationDescFromat;
-            }
-        }
+        //public string PromationDescHeadFormat
+        //{
+        //    get
+        //    {
+        //        return Const.PromationDescHeadFormat;
+        //    }
+        //}
 
-        public string GetProductItemText(Product product)
+        //public string PromationDescItemFormat
+        //{
+        //    get
+        //    {
+        //        return Const.PromationDescItemFormat;
+        //    }
+        //}
+
+        public string GetProductItemText(Product product, int Quantity)
         {
-            var saveCount = (int)Math.Floor(1.0 * product.Quantity * FreeNum / (FreeNum+ BaseNum));
+            var saveCount = (int)Math.Floor(1.0 * Quantity * FreeNum / (FreeNum+ BaseNum));
             var saveCash = saveCount * product.Price;
-            var sum = product.Quantity * product.Price- saveCash;
-            return string.Format(ProductItemFormat, product.Name, product.Quantity, product.Unit,
+            var sum = Quantity * product.Price- saveCash;
+            return string.Format(Const.ProductItemNormal, product.Name, Quantity, product.Unit,
                 product.Price, sum);
         }
-
-        public string GetPromationDescItemText(Product product)
+        public string GetPromationDescHeaderText()
         {
-            var saveCount = (int)Math.Floor(1.0 * product.Quantity * FreeNum / (FreeNum + BaseNum));
-            return string.Format(PromationDescFromat, product.Name, saveCount, product.Unit);
+            return string.Format(Const.PromationDescHeadFormat, BaseNum, FreeNum);
+        }
+        public string GetPromationDescItemText(Product product, int Quantity)
+        {
+            var saveCount = (int)Math.Floor(1.0 * Quantity * FreeNum / (FreeNum + BaseNum));
+            return string.Format(Const.PromationDescItemFormat, product.Name, saveCount, product.Unit);
         }
 
-        public decimal GetProdcutSum(Product product)
+        public decimal GetProdcutSum(Product product,int Quantity)
         {
-            var saveCount = (int)Math.Floor(1.0 * product.Quantity * FreeNum / (FreeNum + BaseNum));
+            var saveCount = (int)Math.Floor(1.0 * Quantity * FreeNum / (FreeNum + BaseNum));
             var saveCash = saveCount * product.Price;
-            var sum = product.Quantity * product.Price - saveCash;
+            var sum = Quantity * product.Price - saveCash;
 
             return sum;
         }
 
-        public decimal GetProdcutSave(Product product)
+        public decimal GetProdcutSave(Product product, int Quantity)
         {
-            var saveCount = (int)Math.Floor(1.0 * product.Quantity * FreeNum / (FreeNum + BaseNum));
+            var saveCount = (int)Math.Floor(1.0 * Quantity * FreeNum / (FreeNum + BaseNum));
             var saveCash = saveCount * product.Price;
 
             return saveCash;
         }
+
+      
     }
 }

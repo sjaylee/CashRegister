@@ -34,16 +34,31 @@ namespace TW.CashRegister.Models
 
         bool ShowPromationDesc { get; }
 
-        string ProductItemFormat { get; }
+        //string ProductItemFormat { get; }
 
-        string PromationDescFromat { get; }
+        //string PromationDescHeadFormat { get; }
 
-        string GetProductItemText(Product product);
+        //string PromationDescItemFormat { get; }
 
-        string GetPromationDescItemText(Product product);
 
-        decimal GetProdcutSum(Product product);
+        string GetProductItemText(Product product, int Quantity);
 
-        decimal GetProdcutSave(Product product);
+        /// <summary>
+        /// 名称：可口可乐，数量：1瓶 类似的文字
+        /// </summary>
+        /// <param name="product"></param>
+        /// <returns></returns>
+        string GetPromationDescItemText(Product product, int Quantity);
+
+        /// <summary>
+        /// 买二赠一商品： 类似的文字
+        /// </summary>
+        /// <param name="product"></param>
+        /// <returns></returns>
+        string GetPromationDescHeaderText();
+
+        decimal GetProdcutSum(Product product, int Quantity);
+
+        decimal GetProdcutSave(Product product, int Quantity);
     }
 }

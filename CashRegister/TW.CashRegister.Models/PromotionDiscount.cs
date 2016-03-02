@@ -90,13 +90,34 @@ namespace TW.CashRegister.Models
             }
         }
 
-        public string GetProductItemText(Product product)
+        public string PromationDescHeadFormat
         {
-            var sum = GetProdcutSum(product);
-            var save = GetProdcutSave(product);
+            get
+            {
+                throw new NotImplementedException();
+            }
+        }
 
-            return string.Format(ProductItemFormat, product.Name, product.Quantity, product.Unit,
+        public string PromationDescItemFormat
+        {
+            get
+            {
+                return string.Empty;
+            }
+        }
+
+        public string GetProductItemText(Product product, int Quantity)
+        {
+            var sum = GetProdcutSum(product, Quantity);
+            var save = GetProdcutSave(product, Quantity);
+
+            return string.Format(ProductItemFormat, product.Name, Quantity, product.Unit,
                 product.Price, sum, save);
+        }
+
+        public string GetPromationDescHeaderText()
+        {
+            return string.Empty;
         }
 
         public string GetPromationDescItemText(Product product)
@@ -104,20 +125,25 @@ namespace TW.CashRegister.Models
             return string.Empty;
         }
 
-        public decimal GetProdcutSum(Product product)
+        public decimal GetProdcutSum(Product product, int Quantity)
         {
             
-            var sum = product.Quantity * product.Price * Discount;
+            var sum = Quantity * product.Price * Discount;
 
             return sum;
         }
 
-        public decimal GetProdcutSave(Product product)
+        public decimal GetProdcutSave(Product product, int Quantity)
         {
     
-            var saveCash = product.Quantity * product.Price *(1- Discount);
+            var saveCash = Quantity * product.Price *(1- Discount);
 
             return saveCash;
+        }
+
+        public string GetPromationDescItemText(Product product, int Quantity)
+        {
+            throw new NotImplementedException();
         }
     }
 }

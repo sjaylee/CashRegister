@@ -16,10 +16,10 @@ namespace TW.CashRegister.Models
         /// </summary>
         public string Name { get; set; }
 
-        /// <summary>
-        /// 数量
-        /// </summary>
-        public int Quantity { get; set; }
+        ///// <summary>
+        ///// 数量
+        ///// </summary>
+        //public int Quantity { get; set; }
 
         /// <summary>
         /// 单位：瓶 、个、 斤
