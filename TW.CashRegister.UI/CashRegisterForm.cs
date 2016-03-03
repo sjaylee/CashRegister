@@ -14,39 +14,58 @@ namespace TW.CashRegister.UI
 {
     public partial class CashRegisterForm : Form
     {
+        private static readonly Service.Cache  _Cache = new Service.Cache();
+        private static readonly Service.Service _Service = new Service.Service();
+
         public CashRegisterForm()
         {
             InitializeComponent();
 
-            BindGrid();
+            //BindGrid();
 
+            BindSettingControls();
         }
 
-        private void BindGrid()
+        private void BindSettingControls()
         {
-            // Get Data of product and promation to form a table
-            // TODO async method
+            ddlPromotions.DataSource = Service.Cache.PromotionsById.Select(pair => new ComboboxItem { Text = pair.Value.Name, Value = pair.Key }).ToList();
 
-            var dt = Service.Service.GenTableForSetPromation();
-            var productNameCol = new DataGridViewTextBoxColumn();
-            productNameCol.DataPropertyName = "ProductName";
-            productNameCol.HeaderText = "商品名称";
+            this.lbProducts.DataSource=  Service.Cache.ProductsById.Select(pair => new ComboboxItem { Text = pair.Value.Name, Value = pair.Key }).ToList();
 
-            this.dataGridView1.Columns.Add(productNameCol);
-
-            for (int i = 1; i < dt.Columns.Count; i++)
-            {
-                var gridCol = new DataGridViewCheckBoxColumn();
-                gridCol.DataPropertyName = dt.Columns[i].ColumnName;
-                gridCol.HeaderText = dt.Columns[i].ColumnName;
-
-                this.dataGridView1.Columns.Add(gridCol);
-            }
-
-
-            dataGridView1.DataSource = dt;
-            dataGridView1.Update();
+            List<PromotionSetting> settings;
+            this.txtContent.Text = _Service.RetrivePromotionSettings(out settings);
+            if (settings != null && settings.Count > 0)
+                _Cache.UpdateProducts(settings);
         }
+
+        //private void BindGrid()
+        //{
+        //    // Get Data of product and promation to form a table
+        //    // TODO async method
+
+        //    dataGridView1.Enabled = true;
+        //    dataGridView1.ReadOnly = false;
+        //    var dt = Service.Service.GenTableForSetPromation();
+        //    var productNameCol = new DataGridViewTextBoxColumn();
+        //    productNameCol.DataPropertyName = "ProductName";
+        //    productNameCol.HeaderText = "商品名称";
+        //    productNameCol.ReadOnly = false;
+        //    this.dataGridView1.Columns.Add(productNameCol);
+
+        //    for (int i = 1; i < dt.Columns.Count; i++)
+        //    {
+        //        var gridCol = new DataGridViewCheckBoxColumn();
+        //        gridCol.DataPropertyName = dt.Columns[i].ColumnName;
+        //        gridCol.HeaderText = dt.Columns[i].ColumnName;
+        //        gridCol.ReadOnly = false;
+
+        //        this.dataGridView1.Columns.Add(gridCol);
+        //    }
+
+
+        //    dataGridView1.DataSource = dt;
+        //    dataGridView1.Update();
+        //}
 
         private void textBox1_TextChanged(object sender, EventArgs e)
         {
@@ -57,34 +76,73 @@ namespace TW.CashRegister.UI
         {
             Order order = new Order();
 
-            Dictionary<Product, int> products = GetInputProducts(this.txtInput.Text);
+
+
+            var products = GetInputProducts(this.txtInput.Text);
+        
+
             order.Products = products;
 
             this.txtOutput.Text = order.GetPrintTemp();
         }
 
+       
+
         public Dictionary<Product, int> GetInputProducts(string text)
         {
-            Dictionary<Product, int> result = new Dictionary<Product, int>();
+            var result = new Dictionary<Product, int>();
             //var cleanCode = text.TrimStart('[').TrimEnd(']').Trim();
 
-            var codes = JsonHelper.JsonToList<string>(text);
-            var allProducts = Service.Service.GetAllProduct().ToDictionary(p=>p.BarCode,p=>p);
+            var codes = JsonHelper.DeserializeJsonToList<string>(text);
+            var allProducts = Service.Cache.ProductsById;
 
             Product product;
-            foreach (var code in codes)
+
+            if (codes != null && codes.Count > 0)
             {
-                var barCodeAndCount = code.Split('-');
-                var barCode = barCodeAndCount[0];
-                int count = 1;
-                count = barCodeAndCount.Length > 1 && int.TryParse(barCodeAndCount[1], out count) ? count : 1;
-                if (allProducts.TryGetValue(code, out product))
+                var groubByCode = codes.ToLookup(c => c);
+
+
+                foreach (var group in groubByCode)
                 {
-                    result.Add(product, count);
+                    var code = group.Key;
+                    var barCodeAndCount = code.Split('-');
+                    var barCode = barCodeAndCount[0];
+
+                    int count = 1;
+                    count = barCodeAndCount.Length > 1 && int.TryParse(barCodeAndCount[1], out count) ? count : 1;
+
+                    int mun = group.Count();
+                    if (mun > count)
+                    {
+                        count = mun;
+                    }
+                    if (allProducts.TryGetValue(barCode, out product))
+                    {                       
+
+                        result[product] = count;
+
+                    }
                 }
             }
-
             return result; 
+        }
+
+        private void txtPromationSetting_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void btnSeeting_Click(object sender, EventArgs e)
+        {
+            var promotionId = (this.ddlPromotions.SelectedItem as ComboboxItem).Value.ToString();
+            var productIds = lbProducts.SelectedItems.Cast<ComboboxItem>().Select(c => c.Value.ToString()).ToList();
+
+            if (!string.IsNullOrWhiteSpace(promotionId) && productIds != null && productIds.Count > 0)
+            {
+                _Cache.UpdateProducts(promotionId, productIds);
+                this.txtContent.Text = _Cache.UpdateJson();
+            }
         }
     }
 }

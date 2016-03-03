@@ -35,11 +35,6 @@ namespace TW.CashRegister.Models
         bool ShowPromationDesc { get; set; }
 
         string Type { get; set; }
-        //string ProductItemFormat { get; }
-
-        //string PromationDescHeadFormat { get; }
-
-        //string PromationDescItemFormat { get; }
 
 
         string GetProductItemText(Product product, int Quantity);

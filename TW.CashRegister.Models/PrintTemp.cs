@@ -18,7 +18,7 @@ namespace TW.CashRegister.Models
 
 
         public static readonly string TotalSumFormat = @"总计：{0}(元)";
-        public static readonly string TotalSaveFormat = @"节省：{1}(元)";
+        public static readonly string TotalSaveFormat = @"节省：{0}(元)";
 
         public static readonly string SplitLine = @"----------------------";
         public static readonly string LastLine = @"**********************";

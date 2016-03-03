@@ -12,7 +12,7 @@ namespace TW.CashRegister.Models
     public class Order
     {
         
-        public Dictionary<Product,int> Products { get; set; }
+        public Dictionary<Product, int> Products { get; set; }
 
    
 
@@ -42,11 +42,12 @@ namespace TW.CashRegister.Models
             //名称：可口可乐，数量：1瓶
             //名称：羽毛球，数量：2个
 
-            var groupByPromationDict = Products.Keys.ToDictionary(p => p.Promation.ID, p => p.Promation);
+            //var groupByPromationDict = Products.Keys.Select(pd => pd.Promation.ID);
             var groupByPromation = Products.Keys.ToLookup(p => p.Promation.ID);
             foreach (var gourp in groupByPromation)
             {
-                var promation = groupByPromationDict[gourp.Key];
+                
+                var promation = gourp.FirstOrDefault().Promation;
 
                 if (promation.ShowPromationDesc)
                 {
@@ -65,7 +66,10 @@ namespace TW.CashRegister.Models
                 }
 
             }
-            if (save > 0)
+
+            resultTemp.AppendLine(Const.SplitLine);
+
+            if (save == decimal.Zero)
             {
                 resultTemp.AppendFormat(Const.TotalSumFormat, sum);
                 resultTemp.AppendLine();
@@ -75,7 +79,7 @@ namespace TW.CashRegister.Models
                 resultTemp.AppendFormat(Const.TotalSumFormat, sum);
                 resultTemp.AppendLine();
 
-                resultTemp.AppendFormat(Const.TotalSaveFormat, sum);
+                resultTemp.AppendFormat(Const.TotalSaveFormat, save);
                 resultTemp.AppendLine();
             }
 
