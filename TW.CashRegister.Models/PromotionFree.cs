@@ -9,8 +9,16 @@ namespace TW.CashRegister.Models
     /// <summary>
     /// m free n 促销
     /// </summary>
-    public  class PromotionFree:IPromotion
+    public class PromotionFree : IPromotion
     {
+        public PromotionFree(int baseNum, int freeNum)
+        {
+
+            this.BaseNum = baseNum;
+            this.FreeNum = freeNum;
+
+        }
+
         /// <summary>
         /// 卖m赠送n中的m
         /// </summary>

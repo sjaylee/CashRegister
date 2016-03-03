@@ -56,7 +56,7 @@ namespace TW.CashRegister.Models
         /// </summary>
         public string BarCode { get; set; }
 
-        public IPromotion Promation { get; set; }
+        public IPromotion Promation { get; set; } = new PromotionNormal();
 
        
     }

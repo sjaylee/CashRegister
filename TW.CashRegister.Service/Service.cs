@@ -21,7 +21,7 @@ namespace TW.CashRegister.Service
             dt.Columns.Add("ProductName");
             foreach (var prom in promations)
             {
-                dt.Columns.Add(prom.Name);
+                dt.Columns.Add(prom.ID);
             }
 
             var dr = dt.NewRow();
@@ -30,7 +30,7 @@ namespace TW.CashRegister.Service
                 dr = dt.NewRow();
                 dr["ProductName"] = product.Name;
                 foreach (var promation in promations)
-                { dr[promation.Name] = false; }
+                { dr[promation.ID] = false; }
 
                 dt.Rows.Add(dr);
             }
@@ -43,6 +43,8 @@ namespace TW.CashRegister.Service
         {
             return Access.GetProducts();
         }
+
+         
     }
 
   

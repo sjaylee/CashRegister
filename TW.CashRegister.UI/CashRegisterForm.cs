@@ -27,11 +27,12 @@ namespace TW.CashRegister.UI
             // Get Data of product and promation to form a table
             // TODO async method
 
+            dataGridView1.Enabled = true;
             var dt = Service.Service.GenTableForSetPromation();
             var productNameCol = new DataGridViewTextBoxColumn();
             productNameCol.DataPropertyName = "ProductName";
             productNameCol.HeaderText = "商品名称";
-
+            productNameCol.ReadOnly = false;
             this.dataGridView1.Columns.Add(productNameCol);
 
             for (int i = 1; i < dt.Columns.Count; i++)
@@ -39,6 +40,7 @@ namespace TW.CashRegister.UI
                 var gridCol = new DataGridViewCheckBoxColumn();
                 gridCol.DataPropertyName = dt.Columns[i].ColumnName;
                 gridCol.HeaderText = dt.Columns[i].ColumnName;
+                gridCol.ReadOnly = false;
 
                 this.dataGridView1.Columns.Add(gridCol);
             }
@@ -57,7 +59,7 @@ namespace TW.CashRegister.UI
         {
             Order order = new Order();
 
-            Dictionary<Product, int> products = GetInputProducts(this.txtInput.Text);
+            var products = GetInputProducts(this.txtInput.Text);
             order.Products = products;
 
             this.txtOutput.Text = order.GetPrintTemp();
@@ -65,26 +67,40 @@ namespace TW.CashRegister.UI
 
         public Dictionary<Product, int> GetInputProducts(string text)
         {
-            Dictionary<Product, int> result = new Dictionary<Product, int>();
+            var result = new Dictionary<Product, int>();
             //var cleanCode = text.TrimStart('[').TrimEnd(']').Trim();
 
-            var codes = JsonHelper.JsonToList<string>(text);
+            var codes = JsonHelper.DeserializeJsonToList<string>(text);
             var allProducts = Service.Service.GetAllProduct().ToDictionary(p=>p.BarCode,p=>p);
 
             Product product;
-            foreach (var code in codes)
+
+            if (codes != null && codes.Count > 0)
             {
-                var barCodeAndCount = code.Split('-');
-                var barCode = barCodeAndCount[0];
-                int count = 1;
-                count = barCodeAndCount.Length > 1 && int.TryParse(barCodeAndCount[1], out count) ? count : 1;
-                if (allProducts.TryGetValue(code, out product))
+                var groubByCode = codes.ToLookup(c => c);
+
+
+                foreach (var group in groubByCode)
                 {
-                    result.Add(product, count);
+                    var code = group.Key;
+                    var barCodeAndCount = code.Split('-');
+                    var barCode = barCodeAndCount[0];
+
+                    int count = 1;
+                    count = barCodeAndCount.Length > 1 && int.TryParse(barCodeAndCount[1], out count) ? count : 1;
+                    
+
+                    if (allProducts.TryGetValue(barCode, out product))
+                    {                       
+
+                        result[product] = count;
+
+                    }
                 }
             }
-
             return result; 
         }
+
+
     }
 }

@@ -1,0 +1,8 @@
+{
+  "ID": "Normal",
+  "Name": "Normal",
+  "Priority": 0,
+  "Unique": false,
+  "ShowPromationDesc": false,
+  "Type": "PromotionNormal"
+}

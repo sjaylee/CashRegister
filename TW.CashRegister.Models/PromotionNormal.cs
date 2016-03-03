@@ -7,48 +7,44 @@ using System.Threading.Tasks;
 namespace TW.CashRegister.Models
 {
     /// <summary>
-    /// 折扣类的促销活动
+    /// 正常销售
     /// </summary>
-    public class PromotionDiscount : IPromotion
+    public class PromotionNormal:IPromotion
     {
-
-        public PromotionDiscount(decimal discount)
-        {
-            this.Discount = discount;
-        }
-
+         
         public string Type { get; set; }
 
-        public decimal Discount { get; set; }
-
+        string id = "Normal";
         public string ID
-        { get; set; }
+        { get { return id; } set { id = value; } }
 
+        string name = "正常(无促销)";
         public string Name
-        { get; set; }
+        { get { return name; } set { name = value; } }
 
         public int Priority
         { get; set; }
-   
 
+
+        bool showPromationDesc = false;
         public bool ShowPromationDesc
-        { get; set; }
+        { get { return showPromationDesc; } set { showPromationDesc = value; } }
 
         public string PromationDescFromat
         { get; set; }
 
+        bool unique = false;
         public bool Unique
-        { get; set; }
+        { get { return unique; } set { unique = value; } }
 
-       
+
 
         public string GetProductItemText(Product product, int Quantity)
         {
             var sum = GetProdcutSum(product, Quantity);
-            var save = GetProdcutSave(product, Quantity);
 
-            return string.Format(Const.ProductItemDiscount, product.Name, Quantity, product.Unit,
-                product.Price, sum, save);
+            return string.Format(Const.ProductItemNormal, product.Name, Quantity, product.Unit,
+                product.Price, sum);
         }
 
         public string GetPromationDescHeaderText()
@@ -63,23 +59,21 @@ namespace TW.CashRegister.Models
 
         public decimal GetProdcutSum(Product product, int Quantity)
         {
-            
-            var sum = Quantity * product.Price * Discount;
+
+            var sum = Quantity * product.Price ;
 
             return sum;
         }
 
         public decimal GetProdcutSave(Product product, int Quantity)
         {
-    
-            var saveCash = Quantity * product.Price *(1- Discount);
 
-            return saveCash;
+            return decimal.Zero;
         }
 
         public string GetPromationDescItemText(Product product, int Quantity)
         {
-            throw new NotImplementedException();
+            return string.Empty;
         }
     }
 }
