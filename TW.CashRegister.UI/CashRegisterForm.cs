@@ -19,6 +19,7 @@ namespace TW.CashRegister.UI
             InitializeComponent();
 
             BindGrid();
+
         }
 
         private void BindGrid()
@@ -26,20 +27,19 @@ namespace TW.CashRegister.UI
             // Get Data of product and promation to form a table
             // TODO async method
 
-          
-                var dt= Service.Service.GenTableForSetPromation();
+            var dt = Service.Service.GenTableForSetPromation();
             var productNameCol = new DataGridViewTextBoxColumn();
             productNameCol.DataPropertyName = "ProductName";
             productNameCol.HeaderText = "商品名称";
 
             this.dataGridView1.Columns.Add(productNameCol);
 
-            for (int i=1;i<dt.Columns.Count;i++)
+            for (int i = 1; i < dt.Columns.Count; i++)
             {
                 var gridCol = new DataGridViewCheckBoxColumn();
                 gridCol.DataPropertyName = dt.Columns[i].ColumnName;
                 gridCol.HeaderText = dt.Columns[i].ColumnName;
-                 
+
                 this.dataGridView1.Columns.Add(gridCol);
             }
 

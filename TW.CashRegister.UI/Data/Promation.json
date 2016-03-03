@@ -1,0 +1,4 @@
+[
+{"ID":"Discount95", "Name": "95折",  "Priority":0, "Unique": false, "ShowPromationDesc" :false, "Discount":0.95, "Type":"PromotionDiscount" },
+{"ID":"Two_Free_One", "Name": "买二赠一",  "Priority":1, "Unique": true, "ShowPromationDesc" :true, "BaseNum":2, "FreeNum": 1, "Type": "PromotionFree"}
+]
