@@ -67,6 +67,10 @@
       <DependentUpon>Resources.resx</DependentUpon>
       <DesignTime>True</DesignTime>
     </Compile>
+    <None Include="Data\Product.json" />
+    <None Include="Data\Promation.json" />
+    <None Include="Data\Promation\PromotionDiscount.json" />
+    <None Include="Data\Promation\PromotionFree.json" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
@@ -81,15 +85,15 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\CashRegister\TW.CashRegister.Common\TW.CashRegister.Common.csproj">
+    <ProjectReference Include="..\TW.CashRegister.Common\TW.CashRegister.Common.csproj">
       <Project>{25e44445-e105-4a69-a105-47678a609e77}</Project>
       <Name>TW.CashRegister.Common</Name>
     </ProjectReference>
-    <ProjectReference Include="..\CashRegister\TW.CashRegister.Models\TW.CashRegister.Models.csproj">
+    <ProjectReference Include="..\TW.CashRegister.Models\TW.CashRegister.Models.csproj">
       <Project>{7f5f00c6-af8b-420a-8a5d-63c8a109fa2c}</Project>
       <Name>TW.CashRegister.Models</Name>
     </ProjectReference>
-    <ProjectReference Include="..\CashRegister\TW.CashRegister.Service\TW.CashRegister.Service.csproj">
+    <ProjectReference Include="..\TW.CashRegister.Service\TW.CashRegister.Service.csproj">
       <Project>{8daf13a0-4788-4d49-be42-a84aab2d2dc3}</Project>
       <Name>TW.CashRegister.Service</Name>
     </ProjectReference>
