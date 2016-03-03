@@ -40,10 +40,15 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Cache.cs" />
     <Compile Include="Service.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\TW.CashRegister.Common\TW.CashRegister.Common.csproj">
+      <Project>{25e44445-e105-4a69-a105-47678a609e77}</Project>
+      <Name>TW.CashRegister.Common</Name>
+    </ProjectReference>
     <ProjectReference Include="..\TW.CashRegister.Models\TW.CashRegister.Models.csproj">
       <Project>{7f5f00c6-af8b-420a-8a5d-63c8a109fa2c}</Project>
       <Name>TW.CashRegister.Models</Name>

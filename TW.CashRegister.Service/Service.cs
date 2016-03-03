@@ -11,7 +11,10 @@ namespace TW.CashRegister.Service
 {
     public class Service
     {
-        public static DataTable GenTableForSetPromation()
+
+        
+
+        public  DataTable GenTableForSetPromation()
         {
             var products = Access.GetProducts();
 
@@ -39,13 +42,28 @@ namespace TW.CashRegister.Service
 
         }
 
-        public static List<Product> GetAllProduct()
+        internal  List<Product> GetAllProduct()
         {
             return Access.GetProducts();
         }
 
-         
+        internal List<IPromotion> GetAllPromotion()
+        {
+            return Access.GetPromation();
+        }
+
+        public void SavePromotionSettings(string jsonContent)
+        {
+            Access.SavePromotionSetting(jsonContent);
+        }
+
+        public string RetrivePromotionSettings(out List<PromotionSetting> settings)
+        {
+            return Access.GetDefaultPromotionSetting(out settings);
+            
+        }
+
     }
 
-  
+
 }

@@ -72,6 +72,7 @@
     <None Include="Data\Promation\PromotionDiscount.json" />
     <None Include="Data\Promation\PromotionFree.json" />
     <None Include="Data\Promation\PromotionNormal.json" />
+    <None Include="Data\PromotionSetting.json" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
