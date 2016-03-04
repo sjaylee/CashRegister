@@ -32,30 +32,53 @@ namespace TW.CashRegister.Models
         /// </summary>
         bool Unique { get; set; }
 
+        /// <summary>
+        /// 是否单独显示促销活动的商品列表
+        /// </summary>
         bool ShowPromationDesc { get; set; }
 
+        /// <summary>
+        /// 促销活动类型
+        /// </summary>
         string Type { get; set; }
 
-
-        string GetProductItemText(Product product, int Quantity);
+        /// <summary>
+        /// 收银单据商品明细
+        /// </summary>
+        /// <param name="product">参加该活动的商品</param>
+        /// <param name="quantity">参加该活动商品的数量</param>
+        /// <returns>返回参加该活动的商品小票明细</returns>
+        string GetProductItemText(Product product, int quantity);
 
         /// <summary>
-        /// 名称：可口可乐，数量：1瓶 类似的文字
+        /// 单独显示促销活动的商品列表的明细项
         /// </summary>
-        /// <param name="product"></param>
+        /// <param name="product">参加该活动的商品</param>
+        /// <param name="quantity">参加该活动商品的数量</param>
         /// <returns></returns>
-        string GetPromationDescItemText(Product product, int Quantity);
+        string GetPromationDescItemText(Product product, int quantity);
 
         /// <summary>
-        /// 买二赠一商品： 类似的文字
+        /// 单独显示促销活动的商品列表区域的抬头。(需求中的："买二赠一商品：")
         /// </summary>
-        /// <param name="product"></param>
         /// <returns></returns>
         string GetPromationDescHeaderText();
 
-        decimal GetProdcutSum(Product product, int Quantity);
+        /// <summary>
+        /// 获得商品（参加该促销后的）总价
+        /// </summary>
+        /// <param name="product">参加该活动的商品</param>
+        /// <param name="quantity">参加该活动商品的数量</param>
+        /// <returns></returns>
+        decimal GetProdcutSum(Product product, int quantity);
 
-        decimal GetProdcutSave(Product product, int Quantity);
+        /// <summary>
+        /// 获得商品（参加该促销后的）总价
+        /// </summary>
+        /// <param name="product">参加该活动的商品</param>
+        /// <param name="quantity">参加该活动商品的数量</param>
+        /// <returns></returns>
+        decimal GetProdcutSave(Product product, int quantity);
 
        
     }

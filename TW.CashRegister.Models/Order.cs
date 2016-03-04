@@ -11,7 +11,9 @@ namespace TW.CashRegister.Models
     /// </summary>
     public class Order
     {
-        
+        /// <summary>
+        /// 订单内容（字典：key 是商品，value是商品数量）
+        /// </summary>
         public Dictionary<Product, int> Products { get; set; }
 
    
@@ -57,7 +59,7 @@ namespace TW.CashRegister.Models
                     {
                         var product = pair.Key;
                         var Quantity = pair.Value;
-                        if (product.Promation.ShowPromationDesc)
+                        if (product.Promation.ShowPromationDesc) 
                         {
                             resultTemp.AppendLine(promation.GetPromationDescItemText(product,Quantity));
                         }
