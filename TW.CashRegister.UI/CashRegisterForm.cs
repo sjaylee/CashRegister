@@ -87,7 +87,12 @@ namespace TW.CashRegister.UI
         }
 
        
-
+        /// <summary>
+        /// 根据条形码列表获得订单内容（商品以及对应的数量）
+        /// TODO: move to service layer.
+        /// </summary>
+        /// <param name="text">商品条形码列表</param>
+        /// <returns></returns>
         public Dictionary<Product, int> GetInputProducts(string text)
         {
             var result = new Dictionary<Product, int>();
@@ -140,7 +145,7 @@ namespace TW.CashRegister.UI
 
             if (!string.IsNullOrWhiteSpace(promotionId) && productIds != null && productIds.Count > 0)
             {
-                _Cache.UpdateProducts(promotionId, productIds);
+                _Cache.UpdateProductsByOnePromotion(promotionId, productIds);
                 this.txtContent.Text = _Cache.UpdateJson();
             }
         }

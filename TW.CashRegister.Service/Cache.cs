@@ -31,7 +31,7 @@ namespace TW.CashRegister.Service
             Promotions.ToDictionary(pm => pm.ID, pm => pm);
        
 
-        public void UpdateProducts(string promotionId, List<string> barCodes)
+        public void UpdateProductsByOnePromotion(string promotionId, List<string> barCodes)
         {
             IPromotion promotion;
 
@@ -59,7 +59,7 @@ namespace TW.CashRegister.Service
 
                 List<string> barCodes = setting.ProductIDs;
 
-                UpdateProducts(promotionId, barCodes);
+                UpdateProductsByOnePromotion(promotionId, barCodes);
                 //IPromotion promotion;
 
                 //if (PromotionsById.TryGetValue(promotionId, out promotion))
