@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 namespace TW.CashRegister.Models
 {
     /// <summary>
-    /// 商品(一类商品的统计结果)
+    /// 商品
     /// </summary>
     public class Product
     {
@@ -26,15 +26,12 @@ namespace TW.CashRegister.Models
         {
             return Name.GetHashCode();
         }
+
         /// <summary>
         /// 名称
         /// </summary>
         public string Name { get; set; }
-
-        ///// <summary>
-        ///// 数量
-        ///// </summary>
-        //public int Quantity { get; set; }
+       
 
         /// <summary>
         /// 单位：瓶 、个、 斤
@@ -56,8 +53,10 @@ namespace TW.CashRegister.Models
         /// </summary>
         public string BarCode { get; set; }
 
+        /// <summary>
+        /// 商品对应的促销活动
+        /// </summary>
         public IPromotion Promation { get; set; } = new PromotionNormal();
-
        
     }
 }

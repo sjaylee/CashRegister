@@ -9,13 +9,14 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using TW.CashRegister.Common;
 using TW.CashRegister.Models;
+using TW.CashRegister.Service;
 
 namespace TW.CashRegister.UI
 {
     public partial class CashRegisterForm : Form
     {
-        private static readonly Service.Cache  _Cache = new Service.Cache();
-        private static readonly Service.Service _Service = new Service.Service();
+        private static readonly Service.Cache  _cache = new Service.Cache();
+        private static readonly Service.Service _service = new Service.Service();
 
         public CashRegisterForm()
         {
@@ -33,9 +34,9 @@ namespace TW.CashRegister.UI
             this.lbProducts.DataSource=  Service.Cache.ProductsById.Select(pair => new ComboboxItem { Text = pair.Value.Name, Value = pair.Key }).ToList();
 
             List<PromotionSetting> settings;
-            this.txtContent.Text = _Service.RetrivePromotionSettings(out settings);
+            this.txtContent.Text = _service.RetrivePromotionSettings(out settings);
             if (settings != null && settings.Count > 0)
-                _Cache.UpdateProducts(settings);
+                _cache.UpdateProducts(settings);
         }
 
         //private void BindGrid()
@@ -145,8 +146,8 @@ namespace TW.CashRegister.UI
 
             if (!string.IsNullOrWhiteSpace(promotionId) && productIds != null && productIds.Count > 0)
             {
-                _Cache.UpdateProductsByOnePromotion(promotionId, productIds);
-                this.txtContent.Text = _Cache.UpdateJson();
+                _cache.UpdateProductsByOnePromotion(promotionId, productIds);
+                this.txtContent.Text = _cache.UpdateJson();
             }
         }
     }
