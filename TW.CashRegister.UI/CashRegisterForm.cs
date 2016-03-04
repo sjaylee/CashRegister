@@ -15,8 +15,8 @@ namespace TW.CashRegister.UI
 {
     public partial class CashRegisterForm : Form
     {
-        private static readonly Cache  _cache = new Cache();
-        private static readonly Service _service = new Service.Service();
+        private static readonly Service.Cache  _cache = new Service.Cache();
+        private static readonly Service.Service _service = new Service.Service();
 
         public CashRegisterForm()
         {
@@ -88,7 +88,12 @@ namespace TW.CashRegister.UI
         }
 
        
-
+        /// <summary>
+        /// 根据条形码列表获得订单内容（商品以及对应的数量）
+        /// TODO: move to service layer.
+        /// </summary>
+        /// <param name="text">商品条形码列表</param>
+        /// <returns></returns>
         public Dictionary<Product, int> GetInputProducts(string text)
         {
             var result = new Dictionary<Product, int>();
@@ -141,7 +146,7 @@ namespace TW.CashRegister.UI
 
             if (!string.IsNullOrWhiteSpace(promotionId) && productIds != null && productIds.Count > 0)
             {
-                _cache.UpdateProducts(promotionId, productIds);
+                _cache.UpdateProductsByOnePromotion(promotionId, productIds);
                 this.txtContent.Text = _cache.UpdateJson();
             }
         }
