@@ -59,9 +59,10 @@ namespace TW.CashRegister.Models
                     {
                         var product = pair.Key;
                         var Quantity = pair.Value;
-                        if (product.Promation.ShowPromationDesc) 
+                        if ((product.Promation.ShowPromationDesc)
+                            && product.Promation.GetProdcutSave(product, Quantity) != decimal.Zero)
                         {
-                            resultTemp.AppendLine(promation.GetPromationDescItemText(product,Quantity));
+                            resultTemp.AppendLine(promation.GetPromationDescItemText(product, Quantity));
                         }
 
                     }
