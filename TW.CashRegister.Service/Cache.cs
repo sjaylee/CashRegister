@@ -31,7 +31,7 @@ namespace TW.CashRegister.Service
             Promotions.ToDictionary(pm => pm.ID, pm => pm);
        
 
-        public void UpdateProducts(string promotionId, List<string> barCodes)
+        public void UpdateProductsByOnePromotion(string promotionId, List<string> barCodes)
         {
             IPromotion promotion;
 
@@ -51,28 +51,30 @@ namespace TW.CashRegister.Service
 
         }
 
-        public void UpdateProducts( List<PromotionSetting> settings)
+        public void UpdateProducts(List<PromotionSetting> settings)
         {
             foreach (var setting in settings)
             {
                 string promotionId = setting.PromotionID;
 
                 List<string> barCodes = setting.ProductIDs;
-                IPromotion promotion;
 
-                if (PromotionsById.TryGetValue(promotionId, out promotion))
-                {
-                    foreach (var barCode in barCodes)
-                    {
-                        Product product;
+                UpdateProductsByOnePromotion(promotionId, barCodes);
+                //IPromotion promotion;
 
-                        if (ProductsById.TryGetValue(barCode, out product))
-                        {
-                            product.Promation = promotion;
-                        }
-                    }
+                //if (PromotionsById.TryGetValue(promotionId, out promotion))
+                //{
+                //    foreach (var barCode in barCodes)
+                //    {
+                //        Product product;
 
-                }
+                //        if (ProductsById.TryGetValue(barCode, out product))
+                //        {
+                //            product.Promation = promotion;
+                //        }
+                //    }
+
+                //}
             }
 
         }
