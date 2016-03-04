@@ -51,28 +51,30 @@ namespace TW.CashRegister.Service
 
         }
 
-        public void UpdateProducts( List<PromotionSetting> settings)
+        public void UpdateProducts(List<PromotionSetting> settings)
         {
             foreach (var setting in settings)
             {
                 string promotionId = setting.PromotionID;
 
                 List<string> barCodes = setting.ProductIDs;
-                IPromotion promotion;
 
-                if (PromotionsById.TryGetValue(promotionId, out promotion))
-                {
-                    foreach (var barCode in barCodes)
-                    {
-                        Product product;
+                UpdateProducts(promotionId, barCodes);
+                //IPromotion promotion;
 
-                        if (ProductsById.TryGetValue(barCode, out product))
-                        {
-                            product.Promation = promotion;
-                        }
-                    }
+                //if (PromotionsById.TryGetValue(promotionId, out promotion))
+                //{
+                //    foreach (var barCode in barCodes)
+                //    {
+                //        Product product;
 
-                }
+                //        if (ProductsById.TryGetValue(barCode, out product))
+                //        {
+                //            product.Promation = promotion;
+                //        }
+                //    }
+
+                //}
             }
 
         }
