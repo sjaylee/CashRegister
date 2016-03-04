@@ -13,7 +13,7 @@ namespace TW.CashRegister.Models
     public class Const
     {
         public static readonly string HeadFormat = @"***<没钱赚商店>购物清单***";
-        public static readonly string ProductItemNormal= "名称：{0}，数量：{1}{2}，单价：{3}(元)，小计：{4}(元)";
+        public static readonly string ProductItemNormal= @"名称：{0}，数量：{1}{2}，单价：{3}(元)，小计：{4}(元)";
         public static readonly string ProductItemDiscount = "名称：{0}，数量：{1}{2}，单价：{3}(元)，小计：{4}(元)，节省{5}(元)";
 
         public static readonly string PromationDescHeadFormat = @"买{0}赠{1}商品：";

@@ -46,8 +46,8 @@ namespace TW.CashRegister.Models
         {
             var sum = GetProdcutSum(product, Quantity);
 
-            return string.Format(Const.ProductItemNormal, product.Name, Quantity, product.Unit,
-                product.Price, sum);
+            return string.Format(Const.ProductItemNormal, product.Name, Quantity.ToString(), product.Unit,
+                product.Price.ToString("#0.00"), sum.ToString("#0.00"));
         }
 
         public string GetPromationDescHeaderText()

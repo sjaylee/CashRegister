@@ -50,8 +50,8 @@ namespace TW.CashRegister.Models
             var sum = GetProdcutSum(product, Quantity);
             var save = GetProdcutSave(product, Quantity);
 
-            return string.Format(Const.ProductItemDiscount, product.Name, Quantity, product.Unit,
-                product.Price, sum, save);
+            return string.Format(Const.ProductItemDiscount, product.Name, Quantity.ToString(), product.Unit,
+                product.Price.ToString("#0.00"), sum.ToString("#0.00"), save.ToString("#0.00"));
         }
 
         public string GetPromationDescHeaderText()

@@ -25,6 +25,9 @@ namespace TW.CashRegister.Models
         {
             var result = string.Empty;
 
+            if (Products == null || Products.Count == 0)
+                return string.Empty;
+
 
             var contentText = new StringBuilder();
 
@@ -87,20 +90,20 @@ namespace TW.CashRegister.Models
             // 拼接最终统计区
             if (save == decimal.Zero)
             {
-                contentText.AppendFormat(Const.TotalSumFormat, sum);
+                contentText.AppendFormat(Const.TotalSumFormat, sum.ToString("#0.00"));
                 contentText.AppendLine();
             }
             else
             {
-                contentText.AppendFormat(Const.TotalSumFormat, sum);
+                contentText.AppendFormat(Const.TotalSumFormat, sum.ToString("#0.00"));
                 contentText.AppendLine();
 
-                contentText.AppendFormat(Const.TotalSaveFormat, save);
+                contentText.AppendFormat(Const.TotalSaveFormat, save.ToString("#0.00"));
                 contentText.AppendLine();
             }
 
 
-            contentText.AppendLine(Const.LastLine);
+            contentText.Append(Const.LastLine);
 
 
             return contentText.ToString();

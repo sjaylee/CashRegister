@@ -52,8 +52,8 @@ namespace TW.CashRegister.Models
             var saveCount = (int)Math.Floor(1.0 * Quantity * FreeNum / (FreeNum+ BaseNum));
             var saveCash = saveCount * product.Price;
             var sum = Quantity * product.Price- saveCash;
-            return string.Format(Const.ProductItemNormal, product.Name, Quantity, product.Unit,
-                product.Price, sum);
+            return string.Format(Const.ProductItemNormal, product.Name, Quantity.ToString(), product.Unit,
+                product.Price.ToString("#0.00"), sum.ToString("#0.00"));
         }
         public string GetPromationDescHeaderText()
         {
@@ -62,7 +62,7 @@ namespace TW.CashRegister.Models
         public string GetPromationDescItemText(Product product, int Quantity)
         {
             var saveCount = (int)Math.Floor(1.0 * Quantity * FreeNum / (FreeNum + BaseNum));
-            return string.Format(Const.PromationDescItemFormat, product.Name, saveCount, product.Unit);
+            return string.Format(Const.PromationDescItemFormat, product.Name, saveCount.ToString(), product.Unit);
         }
 
         public decimal GetProdcutSum(Product product,int Quantity)
