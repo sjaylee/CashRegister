@@ -19,6 +19,9 @@ namespace TW.CashRegister.Models
 
         public string Type { get; set; }
 
+        /// <summary>
+        /// 折扣
+        /// </summary>
         public decimal Discount { get; set; }
 
         public string ID

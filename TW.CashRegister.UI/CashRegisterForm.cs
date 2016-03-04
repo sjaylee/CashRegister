@@ -18,6 +18,8 @@ namespace TW.CashRegister.UI
         private static readonly Service.Cache  _cache = new Service.Cache();
         private static readonly Service.Service _service = new Service.Service();
 
+ 
+
         public CashRegisterForm()
         {
             InitializeComponent();
@@ -84,7 +86,7 @@ namespace TW.CashRegister.UI
 
             order.Products = products;
 
-            this.txtOutput.Text = order.GetPrintTemp();
+            this.txtOutput.Text = order.GetInvoiceContent();
         }
 
        

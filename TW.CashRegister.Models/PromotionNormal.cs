@@ -9,12 +9,15 @@ namespace TW.CashRegister.Models
     /// <summary>
     /// 正常销售
     /// </summary>
-    public class PromotionNormal:IPromotion
+    public class PromotionNormal : IPromotion
     {
-         
+
         public string Type { get; set; }
 
         string id = "Normal";
+        /// <summary>
+        /// 促销活动ID
+        /// </summary>
         public string ID
         { get { return id; } set { id = value; } }
 
@@ -60,7 +63,7 @@ namespace TW.CashRegister.Models
         public decimal GetProdcutSum(Product product, int Quantity)
         {
 
-            var sum = Quantity * product.Price ;
+            var sum = Quantity * product.Price;
 
             return sum;
         }

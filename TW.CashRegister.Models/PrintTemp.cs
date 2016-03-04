@@ -6,7 +6,10 @@ using System.Threading.Tasks;
 
 namespace TW.CashRegister.Models
 {
-
+    /// <summary>
+    /// 常用常量
+    /// TODO： 定义成配置文件，方便以后发票格式修改后代码修正
+    /// </summary>
     public class Const
     {
         public static readonly string HeadFormat = @"***<没钱赚商店>购物清单***";
@@ -26,7 +29,9 @@ namespace TW.CashRegister.Models
 
 
 
-
+    /// <summary>
+    /// 发票格式
+    /// </summary>
     public class PrintTemp
     {
         /// <summary>
@@ -35,10 +40,19 @@ namespace TW.CashRegister.Models
         /// </summary>
         public string Head { get; set; }
 
+        /// <summary>
+        /// 订单列表
+        /// </summary>
         public List<string> ProductItems { get; set; }
 
+        /// <summary>
+        /// 活动订单列表区
+        /// </summary>
         public string DescForFree { get; set; }
 
+        /// <summary>
+        /// 结算区 总计 和总节省
+        /// </summary>
         public string Summation { get; set; }
     }
 

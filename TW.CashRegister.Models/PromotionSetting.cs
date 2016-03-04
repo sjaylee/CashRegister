@@ -17,7 +17,7 @@ namespace TW.CashRegister.Models
         public string PromotionID { get; set; } // "PromotionDiscount_0.95",
 
         /// <summary>
-        /// 商品ID列表
+        /// 商品ID(BarCode)列表
         /// </summary>
         public List<string> ProductIDs { get; set; }//: [ "ITEM000001", "ITEM000003" ]
     }
